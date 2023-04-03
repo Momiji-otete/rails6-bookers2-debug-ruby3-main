@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path, notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
       render "edit"
     end
@@ -31,8 +32,8 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
+    user = User.find(params[:id])
+    unless user == current_user
       redirect_to user_path(current_user)
     end
   end
