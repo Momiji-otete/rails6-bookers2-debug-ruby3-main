@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     #ここで@book.userを渡すよりrenderでuserに@book.userを渡すほうが無駄なエラーを防げる気がする
     #@user = @book.user
+    @book_comment = BookComment.new
   end
 
   def index
