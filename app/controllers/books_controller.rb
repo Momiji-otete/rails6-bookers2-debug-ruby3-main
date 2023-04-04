@@ -1,9 +1,11 @@
 class BooksController < ApplicationController
-  before_action :is_matching_user, only: [:edit, :update]
+  #コメントは解説を見てから修正を加えた部分、並びに説明を記載
+  before_action :is_matching_user, only: [:edit, :update, :destroy]
 
   def show
     @book = Book.find(params[:id])
-    @user = @book.user
+    #ここで@book.userを渡すよりrenderでuserに@book.userを渡すほうが無駄なエラーを防げる気がする
+    #@user = @book.user
   end
 
   def index
@@ -23,11 +25,11 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    #@book = Book.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
+    #@book = Book.find(params[:id])
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
@@ -36,7 +38,7 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    #@book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
   end
@@ -48,8 +50,9 @@ class BooksController < ApplicationController
   end
 
   def is_matching_user
-    book = Book.find(params[:id])
-    unless book.user == current_user
+    #ここを@bookにすることでedit、update、destroyのfindメソッドを消すことができる
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
       redirect_to books_path
     end
   end
