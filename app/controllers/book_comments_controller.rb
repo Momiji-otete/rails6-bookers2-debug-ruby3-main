@@ -7,7 +7,7 @@ class BookCommentsController < ApplicationController
     @comment.save
     # redirect_back(fallback_location: root_path)
     # redirect_to request.referer
-    @book_comment = BookComment.new
+#    @book_comment = BookComment.new
   end
 
   def destroy
