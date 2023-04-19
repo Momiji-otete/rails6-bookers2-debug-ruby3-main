@@ -11,8 +11,7 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.all
-#    @books = Book.all.fav_counting.order()
+    @books = Book.all.sort_by{ |books| [books.favorites.count] }.reverse
   end
 
   def create
@@ -58,4 +57,14 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+
+  def fav_sorting
+    @order = Favorite.group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day)
+    # @order.order('count(book_id) desc').pluck(:book_id)
+    #Book.find(@order)
+  end
+
+  # def fav_ordering
+  #   Book.joins(:favorites).group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day).order('count(user_id) desc')
+  # end
 end
