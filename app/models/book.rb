@@ -20,8 +20,12 @@ class Book < ApplicationRecord
       Book.where("title LIKE ?", "%#{search_word}%")
     end
   end
-  
+
 #  def self.fav_counting
   #   Favorite.group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day).count.pluck(:book_id)
   # end
+  def self.fav_sorting
+    all.sort_by{ |books| [books.favorites.count] }.reverse
+  end
+
 end

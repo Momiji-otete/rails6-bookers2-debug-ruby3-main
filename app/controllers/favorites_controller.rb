@@ -7,6 +7,7 @@ class FavoritesController < ApplicationController
     @favorite.save
     # redirect_back(fallback_location: root_path)
     # redirect_to request.referer
+    @books = Book.fav_sorting
   end
 
   def destroy
@@ -15,5 +16,13 @@ class FavoritesController < ApplicationController
     @favorite.destroy
     # redirect_back(fallback_location: root_path)
     # redirect_to request.referer
+    @books = Book.fav_sorting
   end
+  
+  private
+  
+  # def fav_sorting
+  #   Book.all.sort_by{ |books| [books.favorites.count] }.reverse
+  # end
+
 end
