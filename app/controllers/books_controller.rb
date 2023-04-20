@@ -21,7 +21,7 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
-      @books = Book.all
+      @books = Book.fav_sorting
       render 'index'
     end
   end
@@ -68,7 +68,7 @@ class BooksController < ApplicationController
   # def fav_ordering
   #   Book.joins(:favorites).group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day).order('count(user_id) desc')
   # end
-  
+
   # def fav_sorting
   #   Book.all.sort_by{ |books| [books.favorites.count] }.reverse
   # end
