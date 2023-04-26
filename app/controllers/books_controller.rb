@@ -4,14 +4,15 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    #ここで@book.userを渡すよりrenderでuserに@book.userを渡すほうが無駄なエラーを防げる気がする
-    #@user = @book.user
+    @user = @book.user
     @book_comment = BookComment.new
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def index
     @book = Book.new
-    # @books = Book.all.sort_by{ |books| [books.favorites.count] }.reverse
     @books = Book.fav_sorting
   end
 
@@ -27,11 +28,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-    #@book = Book.find(params[:id])
   end
 
   def update
-    #@book = Book.find(params[:id])
     if @book.update(book_params)
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
@@ -40,7 +39,6 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    #@book = Book.find(params[:id])
     @book.destroy
     redirect_to books_path
   end
@@ -59,17 +57,4 @@ class BooksController < ApplicationController
     end
   end
 
-  # def fav_sorting
-  #   @order = Favorite.group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day)
-  #   # @order.order('count(book_id) desc').pluck(:book_id)
-  #   #Book.find(@order)
-  # end
-
-  # def fav_ordering
-  #   Book.joins(:favorites).group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.current.end_of_day).order('count(user_id) desc')
-  # end
-
-  # def fav_sorting
-  #   Book.all.sort_by{ |books| [books.favorites.count] }.reverse
-  # end
 end
