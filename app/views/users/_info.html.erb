@@ -34,4 +34,17 @@
   <% else %>
     <%= render "relationships/btn", user: user %>
   <% end %>
+
+  <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+    <% if @isRoom != true %>
+      <%= form_with model: @room do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, value: @user.id %>
+        <% end %>
+        <%= f.submit 'チャットを始める', class:"ml-3" %>
+      <% end %>
+    <% else %>
+      <%= link_to "チャットへ", room_path(@roomId), class:"ml-3" %>
+    <% end %>
+  <% end %>
 </div>

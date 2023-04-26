@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed #自分がフォローしている人
   has_many :followers, through: :reverse_of_relationships, source: :follower #自分をフォローしている人
 
+  has_many :entries, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
