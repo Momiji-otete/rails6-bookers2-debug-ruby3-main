@@ -13,10 +13,14 @@
   <div class="messages">
     <% if @messages.any? %>
       <% @messages.each do |message| %>
-        <p>
-        <%= image_tag message.user.get_profile_image, size:"50x50" %>
-        <%= message.message %>
-        </p>
+        <% if message.user_id == current_user.id %>
+          <p style="text-align: right;"><%= message.message %></p>
+        <% else %>
+          <p style="text-align: left;">
+            <%= image_tag message.user.get_profile_image, size:"50x50" %>
+            <%= message.message %>
+          </p>
+        <% end %>
       <% end %>
     <% end %>
   </div>

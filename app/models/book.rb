@@ -23,11 +23,8 @@ class Book < ApplicationRecord
     end
   end
 
-#  def self.fav_counting
-  #   Favorite.group(:book_id).where(created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day).count.pluck(:book_id)
+  # def self.fav_sorting
+  #   all.sort_by{ |books| [books.favorites.count] }.reverse
   # end
-  def self.fav_sorting
-    all.sort_by{ |books| [books.favorites.count] }.reverse
-  end
 
 end
