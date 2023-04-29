@@ -22,6 +22,16 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+
+    to = Time.current.at_end_of_day
+    from = Time.current.at_beginning_of_day
+    @data = {
+      'today' => Book.where(user_id: @user.id, created_at: from...to).size,
+      'yesterday' => Book.where(user_id: @user.id, created_at: (from - 1.day)...(to - 1.day)).size
+      # rate => today / yesterday * 100
+    }
+
+
   end
 
   def index
