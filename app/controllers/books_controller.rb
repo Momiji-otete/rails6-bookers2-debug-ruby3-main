@@ -30,12 +30,12 @@ class BooksController < ApplicationController
 
   def index
     to = Time.current.at_end_of_day
-    from = (to - 6.day).at_biginning_of_day
-    @books = Book.all.sort_by {|a,b|
+    from = (to - 6.day).at_beginning_of_day
+    @books = Book.all.sort {|a,b|
       b.favorites.where(created_at: from...to).size <=>
       a.favorites.where(created_at: from...to).size
     }
-    # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: form...to).size}.reverse
+    # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
     @book = Book.new
   end
 
