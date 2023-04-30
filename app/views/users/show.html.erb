@@ -23,7 +23,31 @@
           <tr>
             <td><%= @data['today'] %></td>
             <td><%= @data['yesterday'] %></td>
-            <td><%#= @data[rate]% %></td>
+            <% unless @data['yesterday'] == 0 %>
+            <td><%= @rate_yesterday %>%</td>
+            <% else %>
+            <td>前日のデータがありません</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+            <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>前週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @data['this_week'] %></td>
+            <td><%= @data['last_week'] %></td>
+            <% unless @data['last_week'] == 0 %>
+            <td><%= @rate_last_week %>%</td>
+            <% else %>
+            <td>前週のデータがありません</td>
+            <% end %>
           </tr>
         </tbody>
       </table>

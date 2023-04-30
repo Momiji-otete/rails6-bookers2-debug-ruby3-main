@@ -23,13 +23,23 @@ class UsersController < ApplicationController
       end
     end
 
-    to = Time.current.at_end_of_day
-    from = Time.current.at_beginning_of_day
+    # to = Time.current.at_end_of_day
+    # from = Time.current.at_beginning_of_day
+    # @data = {
+    #   'today' => Book.where(user_id: @user.id, created_at: from...to).size,
+    #   'yesterday' => Book.where(user_id: @user.id, created_at: (from - 1.day)...(to - 1.day)).size
+    #   # rate => today / yesterday * 100
+    # }
     @data = {
-      'today' => Book.where(user_id: @user.id, created_at: from...to).size,
-      'yesterday' => Book.where(user_id: @user.id, created_at: (from - 1.day)...(to - 1.day)).size
-      # rate => today / yesterday * 100
+      'today' => @books.created_today.size,
+      'yesterday' => @books.created_yesterday.size,
+      'this_week' => @books.created_this_week.size,
+      'last_week' => @books.created_last_week.size,
     }
+
+    @rate_yesterday = (@data['today'] / @data['yesterday']) * 100 unless @data['yesterday'] == 0
+    @rate_last_week = (@data['this_week'] / @data['last_week']) * 100 unless @data['last_week'] == 0
+
 
 
   end
