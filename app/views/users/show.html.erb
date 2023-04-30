@@ -80,13 +80,10 @@
       </table>
 
       <canvas id="myChart"></canvas>
-
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+      <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
       <script>
         $(document).on('turbolinks:load', function () {
-          var ctx = document.getElementById('myChart');
-
+          var ctx = document.getElementById("myChart");
           var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -104,14 +101,14 @@
                 ],
                 borderColor: "rgba(0,0,255,1)",
                 backgroundColor: "rgba(0,0,0,0)"
-              }]
+              }],
             },
             options: {
               plugins: {
                 title: {
                   display: true,
                   text: '7日間の投稿数の比較'
-                }
+                },
               },
               scales: {
                 y: {
