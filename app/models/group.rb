@@ -1,7 +1,6 @@
 class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
-  has_many :users, through: :group_users
-
+  belongs_to :owner, class_name: 'User' #わからなかったやつ
   has_one_attached :group_image
 
   validates :name, presence: true, uniqueness: true
@@ -10,6 +9,10 @@ class Group < ApplicationRecord
 
   def get_group_image
   (group_image.attached?) ? group_image : 'no_image.jpg'
+  end
+
+  def is_owned_by?(user) #なにこれ
+    owner.id == user.id
   end
 end
 
