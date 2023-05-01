@@ -18,7 +18,7 @@ class Group < ApplicationRecord
     owner.id == user.id
   end
 
-  def joined_in?(user)
+  def joined_in_by?(user)
     group_users.exists?(user_id: user.id)
   end
 end
