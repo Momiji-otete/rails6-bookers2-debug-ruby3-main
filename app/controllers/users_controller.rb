@@ -38,8 +38,16 @@ class UsersController < ApplicationController
     @rate_yesterday = (@data['today'] / @data['yesterday']) * 100 unless @data['yesterday'] == 0
     @rate_last_week = (@data['this_week'] / @data['last_week']) * 100 unless @data['last_week'] == 0
 
+  end
 
-
+  def search_books
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    if params[:created_at].blank?
+      @search_books = "日付を選択してください"
+    else
+      @search_books = @books.where(created_at: params[:created_at].to_date.all_day).count
+    end
   end
 
   def index

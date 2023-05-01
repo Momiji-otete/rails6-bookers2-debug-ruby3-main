@@ -24,4 +24,5 @@ ActiveStorage.start()
 
 global.$ = jQuery;
 window.$ = jQuery;
+
 global.Chart = Chart;
