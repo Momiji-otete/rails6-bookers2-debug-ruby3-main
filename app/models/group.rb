@@ -1,6 +1,9 @@
 class Group < ApplicationRecord
   has_many :group_users, dependent: :destroy
   belongs_to :owner, class_name: 'User' #わからなかったやつ
+
+  has_many :users, through: :group_users
+
   has_one_attached :group_image
 
   validates :name, presence: true, uniqueness: true
@@ -13,6 +16,10 @@ class Group < ApplicationRecord
 
   def is_owned_by?(user) #なにこれ
     owner.id == user.id
+  end
+
+  def joined_in?(user)
+    group_users.exists?(user_id: user.id)
   end
 end
 
