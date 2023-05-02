@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  def send_event_email(title, body, users)
+  def send_email(title, body, users)
     @email_title = title
     @email_body = body
 

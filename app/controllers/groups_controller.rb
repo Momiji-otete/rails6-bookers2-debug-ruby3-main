@@ -45,7 +45,7 @@ class GroupsController < ApplicationController
     users = group.users
     @email_title = params[:email_title]
     @email_body = params[:email_body]
-    UserMailer.send_event_email(@email_title, @email_body, users).deliver
+    UserMailer.send_email(@email_title, @email_body, users).deliver
   end
 
   private
