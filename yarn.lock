@@ -5562,6 +5562,11 @@
   "resolved" "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
   "version" "1.2.1"
 
+"raty-js@^4.1.0":
+  "integrity" "sha512-1mR50kE+/mdOseErh1pb2wRp+yx+FZfVLaeanxbfsxtB6izGquXNPI4XUnQ6u894hY0iKwztDLWG/SJTNHS3eg=="
+  "resolved" "https://registry.npmjs.org/raty-js/-/raty-js-4.1.0.tgz"
+  "version" "4.1.0"
+
 "raw-body@2.4.0":
   "integrity" "sha512-4Oz8DUIwdvoa5qMJelxipzi/iJIi40O5cGV1wNYp5hvZP8ZN0T+jiNkL0QepXs+EsQ9XJ8ipEDoiH70ySUJP3Q=="
   "resolved" "https://registry.npmjs.org/raw-body/-/raw-body-2.4.0.tgz"
