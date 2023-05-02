@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:new, :create, :index, :show, :edit, :update] do
     resource :group_users, only: [:create, :destroy]
+    get '/event_email' => "groups#event_email"
+    get '/send_email' => "groups#send_email"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

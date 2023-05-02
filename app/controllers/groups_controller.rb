@@ -36,6 +36,18 @@ class GroupsController < ApplicationController
     end
   end
 
+  def event_email
+    @group = Group.find(params[:group_id])
+  end
+
+  def send_email
+    group = Group.find(params[:group_id])
+    users = group.users
+    @email_title = params[:email_title]
+    @email_body = params[:email_body]
+    UserMailer.send_event_email(@email_title, @email_body, users).deliver
+  end
+
   private
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image)
