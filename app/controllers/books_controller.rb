@@ -39,6 +39,16 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def new_sorting
+    @books = Book.all.order("created_at DESC")
+    render "sorting"
+  end
+
+  def rate_sorting
+    @books = Book.all.order("rate DESC")
+    render "sorting"
+  end
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
