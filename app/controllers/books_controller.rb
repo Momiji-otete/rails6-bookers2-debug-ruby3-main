@@ -29,25 +29,20 @@ class BooksController < ApplicationController
   end
 
   def index
-    to = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @books = Book.all.sort {|a,b|
-      b.favorites.where(created_at: from...to).size <=>
-      a.favorites.where(created_at: from...to).size
-    }
-    # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
+    unless params[:sort]
+      to = Time.current.at_end_of_day
+      from = (to - 6.day).at_beginning_of_day
+      @books = Book.all.sort {|a,b|
+        b.favorites.where(created_at: from...to).size <=>
+        a.favorites.where(created_at: from...to).size
+      }
+      # @books = Book.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
+    else
+      @books = Book.all.order(params[:sort])
+    end
     @book = Book.new
   end
 
-  def new_sorting
-    @books = Book.all.order("created_at DESC")
-    render "sorting"
-  end
-
-  def rate_sorting
-    @books = Book.all.order("rate DESC")
-    render "sorting"
-  end
 
   def create
     @book = Book.new(book_params)

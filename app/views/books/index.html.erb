@@ -9,10 +9,12 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= link_to "新しい順", new_sorting_path, remote: true %>
+      <%= link_to "新しい順", books_path(sort: 'created_at DESC') %>
       |
-      <%= link_to "評価の高い順", rate_sorting_path, remote: true %>
-      <div id="book_sorting">
+      <%= link_to "評価の高い順", books_path(sort: 'rate DESC') %>
+      |
+      <%= link_to "いいねの多い順", books_path(fav: "true") %>
+      <div>
         <%= render 'index', books: @books%>
       </div>
     </div>

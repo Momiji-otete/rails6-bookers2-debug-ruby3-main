@@ -10,8 +10,6 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  get '/new_sorting' => "books#new_sorting"
-  get '/rate_sorting' => "books#rate_sorting"
 
 
   resources :users, only: [:index,:show,:edit,:update] do
