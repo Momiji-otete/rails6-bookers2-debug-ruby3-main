@@ -75,8 +75,10 @@ class UsersController < ApplicationController
   end
 
   def ensure_correct_user
-    user = User.find(params[:id])
-    unless user == current_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    elsif @user != current_user
       redirect_to user_path(current_user)
     end
   end
