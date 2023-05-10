@@ -50,6 +50,7 @@ class BooksController < ApplicationController
     tag_list = params[:book][:tag_name].split(',')
     if @book.save
       @book.save_tags(tag_list)
+      byebug
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
       @books = Book.all

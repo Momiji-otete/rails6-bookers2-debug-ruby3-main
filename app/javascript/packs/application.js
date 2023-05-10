@@ -17,6 +17,9 @@ import '@fortawesome/fontawesome-free/js/all'
 import Chart from 'chart.js/auto';
 import raty from 'raty-js'
 
+import 'animate.css';
+import 'jquery.inview.js';
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

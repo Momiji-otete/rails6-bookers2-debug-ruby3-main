@@ -1,2 +1,32 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.fadeInUpTrigger,
+.fadeInDownTrigger,
+.fadeInUpTriggerOnce{
+    opacity:0;
+}
+
+.wrapper{
+  overflow: hidden;
+
+  .flex{
+  display:flex;
+  flex-wrap: wrap;
+  }
+
+  .box{
+    width: 220px;
+    padding: 20px;
+    margin:0 20px 20px 0;
+    background: #666;
+    color: #fff;
+    box-sizing:border-box;
+  }
+  
+  a{
+    text-decoration: none;
+    display: block;
+    color: #fff;
+  }
+}

@@ -16,6 +16,49 @@
         <div class="row">
           <%= link_to 'Sign up',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
         </div>
+
+        <div class="wrapper">
+          <!--基本設定＆アニメーションの回数設定-->
+          <p>下にスクロールをすると動きます</p>
+          <br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓
+
+          <div class="flex">
+            <div class="fadeInUpTrigger box">すぐ現れるボックス</div>
+
+            <!--スクロールをしたら1度だけアニメーションをする設定 -->
+            <div class="fadeInUpTriggerOnce box">スクロールをしたら1度だけアニメーションをする</div>
+
+            <!--違う動きを追加指定-->
+            <div class="fadeInDownTrigger box">違う動きを追加指定</div>
+          </div>
+
+        </div>
+        <script>
+          //スクロールをするたびにアニメーションを行う設定
+          $('.fadeInUpTrigger').on('inview', function(event, isInView) {
+              if (isInView) {//表示領域に入った時
+                $(this).addClass('animate__animated animate__fadeInUp');//クラス名が付与
+              } else {//表示領域から出た時
+                $(this).removeClass('animate__animated animate__fadeInUp');//クラス名が除去
+              }
+            });
+
+          //スクロールをしたら1度だけアニメーションをする設定
+            $('.fadeInUpTriggerOnce').on('inview', function(event, isInView) {
+              if (isInView) {//表示領域に入った時
+                $(this).addClass('animate__animated animate__fadeInUp');//クラス名が付与
+              }
+            });
+
+          //違う動きを追加設定
+          $('.fadeInDownTrigger').on('inview', function(event, isInView) {
+              if (isInView) {//表示領域に入った時
+                $(this).addClass('animate__animated animate__fadeInDown');//クラス名が付与
+              } else {//表示領域から出た時
+                $(this).removeClass('animate__animated animate__fadeInDown');//クラス名が除去
+              }
+            });
+        </script>
       </div>
     </div>
   </div>
